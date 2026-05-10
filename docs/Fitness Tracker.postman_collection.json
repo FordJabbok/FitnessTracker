@@ -1,0 +1,680 @@
+{
+  "info": {
+    "_postman_id": "f2c38400-f159-40a0-86a1-7db759c6662c",
+    "name": "Fitness Tracker",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54652972",
+    "_collection_link": "https://go.postman.co/collection/54652972-f2c38400-f159-40a0-86a1-7db759c6662c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "create user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jan dough\",\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"secret123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users"
+              ]
+            },
+            "description": "Creates a new user with name, email, and passwod"
+          },
+          "response": []
+        },
+        {
+          "name": "invalid user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users"
+              ]
+            },
+            "description": "Tests validation middleware by sending an empty request"
+          },
+          "response": []
+        },
+        {
+          "name": "get all user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users"
+              ]
+            },
+            "description": "Returns all users in the database"
+          },
+          "response": []
+        },
+        {
+          "name": "get user by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/users/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "1"
+              ]
+            },
+            "description": "Returns one user by ID, including related workouts"
+          },
+          "response": []
+        },
+        {
+          "name": "user ID not found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/users/1243",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "1243"
+              ]
+            },
+            "description": "Tests 404 handling when a user ID does not exist"
+          },
+          "response": []
+        },
+        {
+          "name": "update user",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"John updated\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "1"
+              ]
+            },
+            "description": "Updates an existing user's information"
+          },
+          "response": []
+        },
+        {
+          "name": "get user workout",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users/1/workouts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "1",
+                "workouts"
+              ]
+            },
+            "description": "Returns all workouts that belong to a specific user"
+          },
+          "response": []
+        },
+        {
+          "name": "delete user",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/users/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "1"
+              ]
+            },
+            "description": "Deletes an existing user"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "exercises",
+      "item": [
+        {
+          "name": "create exercise",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Bench Press\",\r\n  \"category\": \"strength\",\r\n  \"description\": \"Chest compound movement\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/exercises",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "exercises"
+              ]
+            },
+            "description": "Creates a new exercise with name, category, and description"
+          },
+          "response": []
+        },
+        {
+          "name": "invalid exercise",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Yoga Stretch\",\r\n  \"category\": \"yoga\",\r\n  \"description\": \"Invalid category test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/exercises",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "exercises"
+              ]
+            },
+            "description": "STests validation when category is not strength, cardio, or flexibility"
+          },
+          "response": []
+        },
+        {
+          "name": "get all exercise",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/exercises",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "exercises"
+              ]
+            },
+            "description": "Returns all exercises in the database"
+          },
+          "response": []
+        },
+        {
+          "name": "get exercise by id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/exercises/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "exercises",
+                "1"
+              ]
+            },
+            "description": "Returns one exercise by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "update exercise",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"description\": \"Updated chest compound exercise\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/exercises/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "exercises",
+                "1"
+              ]
+            },
+            "description": "Updates an existing exercise"
+          },
+          "response": []
+        },
+        {
+          "name": "delete exercise",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/exercises/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "exercises",
+                "1"
+              ]
+            },
+            "description": "Deletes an existing exercise"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "workouts",
+      "item": [
+        {
+          "name": "create workout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Morning Strength\",\r\n  \"date\": \"2024-03-15\",\r\n  \"notes\": \"Focus on upper body\",\r\n  \"userId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/workouts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts"
+              ]
+            },
+            "description": "Creates a workout connected to an existing user through userId"
+          },
+          "response": []
+        },
+        {
+          "name": "invalid workout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/workouts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts"
+              ]
+            },
+            "description": "Tests validation middleware by sending a workout request with missing required fields"
+          },
+          "response": []
+        },
+        {
+          "name": "get all workout",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/workouts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts"
+              ]
+            },
+            "description": "Returns all workouts, including their related user"
+          },
+          "response": []
+        },
+        {
+          "name": "get workout by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/workouts/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts",
+                "1"
+              ]
+            },
+            "description": "Returns one workout by ID, including the user and exercises"
+          },
+          "response": []
+        },
+        {
+          "name": "update workout",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"notes\": \"Updated workout notes\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/workouts/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts",
+                "1"
+              ]
+            },
+            "description": "Updates an existing workout"
+          },
+          "response": []
+        },
+        {
+          "name": "delete workout",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/workouts/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts",
+                "1"
+              ]
+            },
+            "description": "Deletes an existing workout"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "relationship",
+      "item": [
+        {
+          "name": "add exercise to workout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"exerciseId\": 1,\r\n  \"sets\": 4,\r\n  \"reps\": 8,\r\n  \"weight\": 80.5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/workouts/1/exercises",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts",
+                "1",
+                "exercises"
+              ]
+            },
+            "description": "Adds an exercise to a workout with sets, reps, and weight through the WorkoutExercise"
+          },
+          "response": []
+        },
+        {
+          "name": "reject duplicate exercise in workout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"exerciseId\": 1,\r\n  \"sets\": 4,\r\n  \"reps\": 8,\r\n  \"weight\": 80.5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/workouts/1/exercises",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts",
+                "1",
+                "exercises"
+              ]
+            },
+            "description": "Tests duplicate prevention in the WorkoutExercise"
+          },
+          "response": []
+        },
+        {
+          "name": "get exercise in workout",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/workouts/1/exercises",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts",
+                "1",
+                "exercises"
+              ]
+            },
+            "description": "Lists all exercises attached to a workout, including junction payload fields such as sets, reps, and weight"
+          },
+          "response": []
+        },
+        {
+          "name": "remove exercise from workout",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/workouts/1/exercises/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "workouts",
+                "1",
+                "exercises",
+                "1"
+              ]
+            },
+            "description": "Removes an exercise from a workout by deleting the junction table record"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
